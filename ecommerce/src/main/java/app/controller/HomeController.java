@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-	// tao create view
+	// tao create
 	@GetMapping("/")
 	public String index() {
 		return "views/user/home/index";
