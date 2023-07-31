@@ -5,11 +5,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
+
 	// tao create
+
+
+
 	@GetMapping("/")
 	public String index() {
 		return "views/user/home/index";
 	}
+
 	
 	@GetMapping("/shop-grid")
 	public String shopgrid() {
@@ -39,4 +44,5 @@ public class HomeController {
 	public String contact() {
 		return "views/user/Contact/index";
 	}
+
 }
