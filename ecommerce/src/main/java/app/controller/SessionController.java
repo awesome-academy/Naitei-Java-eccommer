@@ -34,7 +34,6 @@ public class SessionController {
 	@PostMapping("/login")
 	public String handleLogin(Model model, @ModelAttribute("formLogin") formLogin formLogin, BindingResult binding) {
 		loginValidator.validate(formLogin, binding);
-		System.out.println(binding.hasErrors());
 		if(binding.hasErrors())
 
 		{
