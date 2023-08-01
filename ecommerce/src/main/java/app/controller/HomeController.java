@@ -10,7 +10,4 @@ public class HomeController {
 	public String index() {
 		return "views/user/home/index";
 	}
-	
-	
-
 }
