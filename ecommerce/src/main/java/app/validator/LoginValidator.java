@@ -6,20 +6,21 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import app.model.User;
+import app.request.formLogin;
 
 @Component
-public class UserValidator implements Validator {
+public class LoginValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
 		// TODO Auto-generated method stub
-		return User.class.isAssignableFrom(clazz);
+		return formLogin.class.isAssignableFrom(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
 		// TODO Auto-generated method stub
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"username", "required", "ERRORS");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"email", "required", "Email is required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"password", "required", "Password is required");
 		
 	}
