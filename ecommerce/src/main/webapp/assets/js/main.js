@@ -99,7 +99,9 @@
     $('.hero__categories__all').on('click', function(){
         $('.hero__categories ul').slideToggle(400);
     });
-
+     $('.hero__categories1__all').on('click', function(){
+        $('.hero__categories1 ul').slideToggle(400);
+    });
     /*--------------------------
         Latest Product Slider
     ----------------------------*/
