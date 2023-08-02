@@ -24,7 +24,8 @@ hs_err_pid*
 replay_pid*
 /.metadata/
 
-Server/
-datasources.properties
-
+ecommerce/.settings/*
+ecommerce/src/main/resources/datasources.properties
+ecommerce/.classpath
+ecommerce/.project
 

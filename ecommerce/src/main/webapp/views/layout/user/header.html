@@ -30,7 +30,12 @@
 				</ul>
 			</div>
 			<div class="header__top__right__auth">
-				<a href="login"><i class="fa fa-user"></i> Login</a>
+				<span th:if="${username}"> <span>Welcome, <span
+						th:text="${username}"></span>!
+				</span> <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
+				</span> <span th:unless="${username}"> <a href="login"><i
+						class="fa fa-user"></i> Login</a>
+				</span>
 			</div>
 		</div>
 		<nav class="humberger__menu__nav mobile-menu">
@@ -95,7 +100,12 @@
 								</ul>
 							</div>
 							<div class="header__top__right__auth">
-								<a href="login"><i class="fa fa-user"></i> Login</a>
+								<span th:if="${username}"> <span>Welcome, <span
+										th:text="${username}"></span>!
+								</span> <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
+								</span> <span th:unless="${username}"> <a href="login"><i
+										class="fa fa-user"></i> Login</a>
+								</span>
 							</div>
 						</div>
 					</div>
