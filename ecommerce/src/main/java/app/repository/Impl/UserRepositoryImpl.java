@@ -7,6 +7,7 @@ import javax.persistence.TypedQuery;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,10 +24,9 @@ public class UserRepositoryImpl implements UserRepository {
 	@Override
 	public User findUser(String username) {
 		try (Session session = sessionFactory.openSession()) {
-			String hql = "FROM User u WHERE u.username = :username";
-			TypedQuery<User> query = session.createQuery(hql, User.class);
-			query.setParameter("username", username);
-			return query.getSingleResult();
+			Criteria criteria = session.createCriteria(User.class);
+			criteria.add(Restrictions.eq("username", username));
+			return (User) criteria.uniqueResult();
 		} catch (Exception e) {
 			return null;
 		}
@@ -35,8 +35,11 @@ public class UserRepositoryImpl implements UserRepository {
 	@Override
 	public List<String> getUserRoles(String username) {
 		try (Session session = sessionFactory.openSession()) {
-			String hql = "SELECT r.name FROM User u JOIN u.roles r WHERE u.username = :username";
-			return session.createQuery(hql, String.class).setParameter("username", username).getResultList();
+			Criteria criteria = session.createCriteria(User.class);
+			criteria.add(Restrictions.eq("username", username));
+			criteria.createAlias("roles", "r");
+			criteria.setProjection(Projections.property("r.name"));
+			return criteria.list();
 		}
 	}
 

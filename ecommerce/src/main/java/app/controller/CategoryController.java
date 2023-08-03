@@ -13,13 +13,15 @@ import app.model.Category;
 import app.service.CategoryService;
 
 @Controller
-public class HomeController {
-	@Autowired
-	private MyDBAuthenticationService authenticationService;
+public class CategoryController {
+
 	@Autowired
 	private CategoryService categoryService;
 
-	@GetMapping("/")
+	@Autowired
+	private MyDBAuthenticationService authenticationService;
+
+	@GetMapping("/shop-grid")
 	public String index(Model model) {
 		UserDetails userDetails = authenticationService.getCurrentUserDetails();
 		if (userDetails != null) {
@@ -28,11 +30,6 @@ public class HomeController {
 		}
 		List<Category> categories = categoryService.findAll();
 		model.addAttribute("categories", categories);
-		return "views/user/home/index";
-	}
-
-	@GetMapping("/admin")
-	public String dashboard() {
-		return "views/admin/dashboard/index";
+		return "views/user/shop-grid/index";
 	}
 }
