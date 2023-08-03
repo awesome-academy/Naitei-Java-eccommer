@@ -1,25 +1,24 @@
 package app.request;
 
-import javax.validation.constraints.NotEmpty;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@AllArgsConstructor
-@NoArgsConstructor
 public class formLogin {
-    private String email;
+	private String username;
 
-    private String password;
+	private String password;
 
-	public String getEmail() {
-		return email;
+	public formLogin() {
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public formLogin(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -29,6 +28,5 @@ public class formLogin {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-    
-    
+
 }
