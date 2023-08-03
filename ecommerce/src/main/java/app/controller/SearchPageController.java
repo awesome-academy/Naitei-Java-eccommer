@@ -9,12 +9,12 @@ public class SearchPageController {
 	@Controller
 	public class SearchpageController {
 
-	    @RequestMapping("/ecommerce")
+	    @RequestMapping("/")
 	    public String homePage() {
 	        return "views/user/home/index";
 	    }
 
-	    @RequestMapping("/ecommerce/{category}")
+	    @RequestMapping("/{category}")
 	    public ResponseEntity<String> displayCategory(@PathVariable("category") String category) {
 	        
 	        String htmlContent = "<h2>You clicked on: " + category + "</h2>";
