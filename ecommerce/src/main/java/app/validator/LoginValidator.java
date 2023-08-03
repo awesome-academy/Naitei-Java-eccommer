@@ -20,9 +20,15 @@ public class LoginValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		// TODO Auto-generated method stub
+
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "required", "Username is required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "required", "Password is required");
 
 	}
 
-}
+		
+	}
+	
+
+
+

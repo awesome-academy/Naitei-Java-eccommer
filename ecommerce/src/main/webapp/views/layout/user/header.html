@@ -30,16 +30,12 @@
 				</ul>
 			</div>
 			<div class="header__top__right__auth">
-
-				<a href="login"><i class="fa fa-user"></i> Login</a>
-
 				<span th:if="${username}"> <span>Welcome, <span
 						th:text="${username}"></span>!
 				</span> <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
 				</span> <span th:unless="${username}"> <a href="login"><i
 						class="fa fa-user"></i> Login</a>
 				</span>
-
 			</div>
 		</div>
 		<nav class="humberger__menu__nav mobile-menu">
@@ -104,22 +100,19 @@
 								</ul>
 							</div>
 							<div class="header__top__right__auth">
-
-								<a href="login"><i class="fa fa-user"></i> Login</a>
-
 								<span th:if="${username}"> <span>Welcome, <span
 										th:text="${username}"></span>!
 								</span> <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
 								</span> <span th:unless="${username}"> <a href="login"><i
 										class="fa fa-user"></i> Login</a>
 								</span>
-
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<div class="container">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3">
@@ -204,7 +197,7 @@
         <li class="category-item" style="line-height:39px;" data-category="Papayaya & Crisps">Papayaya & Crisps</li>
         <li class="category-item" style="line-height:39px;" data-category="Oatmeal">Oatmeal</li>
         <li class="category-item" style="line-height:39px;" data-category="Fresh Bananas">Fresh Bananas</li>
-        
+ 
     </ul>
 </div>
 
@@ -219,7 +212,8 @@
         $('.category-item').click(function() {
             const category = $(this).data('category');
             const baseUrl = 'http://localhost:8080/ecommerce/';
-            const url = baseUrl + '#category/' + encodeURIComponent(category); 
+
+            const url = baseUrl + '#category/' + encodeURIComponent(category);
 
             $.ajax({
                 url: url,
@@ -240,7 +234,8 @@
     });
 </script>                               
 
-		                                                              
+
+		                                                             
          <form id="searchForm"> 
          <input type="text" id="keywordInput" style = "padding: 13px 30px 12px;" placeholder="What do you need?">
          <button type="submit" class="site-btn" style = "padding:17px 31px 14px;">SEARCH</button>

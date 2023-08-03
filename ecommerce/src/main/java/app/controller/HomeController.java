@@ -10,8 +10,11 @@ import app.authentication.MyDBAuthenticationService;
 
 @Controller
 public class HomeController {
+
 	@Autowired
 	private MyDBAuthenticationService authenticationService;
+
+
 
 	@GetMapping("/")
 	public String index(Model model) {
