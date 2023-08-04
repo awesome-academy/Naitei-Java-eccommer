@@ -1,11 +1,14 @@
 package app.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -43,8 +46,9 @@ public class Product {
 	@Column(name = "image")
 	private String image;
 
-	@Column(name = "category_id")
-	private int categoryId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+	private Category category;
 
 	public Product() {
 	}
@@ -97,12 +101,18 @@ public class Product {
 		this.image = image;
 	}
 
-	public int getCategoryId() {
-		return categoryId;
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setCategoryID(int categoryId) {
-		this.categoryId = categoryId;
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	@Override
+	public String toString() {
+		return "Product{" + "id=" + id + ", name='" + name + '\'' + ", category=" + category + ", description='" + description
+				+ '\'' + ", price=" + price + ", stockQuantity=" + stockQuantity + ", image='" + image + '\'' + '}';
 	}
 
 }
