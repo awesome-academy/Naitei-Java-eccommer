@@ -113,7 +113,6 @@
 			</div>
 		</div>
 		<div class="container">
-		<div class="container">
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo">
@@ -197,15 +196,41 @@
         <li class="category-item" style="line-height:39px;" data-category="Papayaya & Crisps">Papayaya & Crisps</li>
         <li class="category-item" style="line-height:39px;" data-category="Oatmeal">Oatmeal</li>
         <li class="category-item" style="line-height:39px;" data-category="Fresh Bananas">Fresh Bananas</li>
- 
+        <!-- Thêm các mục khác tương tự vào đây -->
     </ul>
 </div>
 
 <div class="category-content">
+   
+    </ul>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="./assets/js/SearchCategory.js">
-</script>                               	                                                             
+<script>
+    $(document).ready(function() {
+        $('.category-item').click(function() {
+            const category = $(this).data('category');
+            const baseUrl = 'http://localhost:8080/ecommerce/';
+            const url = baseUrl + '#category/' + encodeURIComponent(category); // Thêm "#category/" vào URL
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(data) {
+                    
+                    $('#selected-category').text(category);
+
+                    $('#product-list').html(data);
+                    
+                    window.location.href = url; 
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>                               
          <form id="searchForm"> 
          <input type="text" id="keywordInput" style = "padding: 13px 30px 12px;" placeholder="What do you need?">
          <button type="submit" class="site-btn" style = "padding:17px 31px 14px;">SEARCH</button>
