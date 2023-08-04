@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/", "/login", "/logout","/assets/**").permitAll()
+		http.csrf().disable().authorizeRequests().antMatchers("/**", "/login", "/logout","/assets/**").permitAll()
 				.antMatchers("/admin/**").authenticated() // Chặn truy cập vào /admin/** nếu chưa đăng nhập
 				.anyRequest().access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')") // Nếu đăng nhập rồi, cho phép truy cập
 																				// vào bất kỳ trang nào yêu cầu

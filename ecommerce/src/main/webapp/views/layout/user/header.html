@@ -1,3 +1,4 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="header">
 	<!-- Page Preloder -->
 	<div id="preloder">
@@ -40,9 +41,9 @@
 		</div>
 		<nav class="humberger__menu__nav mobile-menu">
 			<ul>
-			
+
 				<li class="active"><a href="./">Home</a></li>
-				<li><a href="./shop-grid.html">Shop</a></li>
+				<li><a href="shop-grid">Shop</a></li>
 				<li><a href="#">Pages</a>
 					<ul class="header__menu__dropdown">
 						<li><a href="./shop-details.html">Shop Details</a></li>
@@ -113,137 +114,121 @@
 			</div>
 		</div>
 		<div class="container">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
-					<div class="header__logo">
-						<a href="./index.html"><img src="assets/img/logo.png" alt=""></a>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3">
+						<div class="header__logo">
+							<a href="./index.html"><img src="assets/img/logo.png" alt=""></a>
+						</div>
 					</div>
-				</div>
-				<div class="col-lg-6">
-					<nav class="header__menu">
-						<ul>
-							<li class="active"><a href="./">Home</a></li>
-							<li><a href="./shop-grid.html">Shop</a></li>
-							<li><a href="#">Pages</a>
-								<ul class="header__menu__dropdown">
-									<li><a href="./shop-details.html">Shop Details</a></li>
-									<li><a href="./shoping-cart.html">Shoping Cart</a></li>
-									<li><a href="./checkout.html">Check Out</a></li>
-									<li><a href="./blog-details.html">Blog Details</a></li>
-								</ul></li>
-							<li><a href="./blog.html">Blog</a></li>
-							<li><a href="./contact.html">Contact</a></li>
-						</ul>
-					</nav>
-				</div>
-				<div class="col-lg-3">
-					<div class="header__cart">
-						<ul>
-							<li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-							<li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-						</ul>
-						<div class="header__cart__price">
-							item: <span>$150.00</span>
+					<div class="col-lg-6">
+						<nav class="header__menu">
+							<ul>
+								<li class="active"><a href="./">Home</a></li>
+								<li><a href="shop-grid">Shop</a></li>
+								<li><a href="#">Pages</a>
+									<ul class="header__menu__dropdown">
+										<li><a href="./shop-details.html">Shop Details</a></li>
+										<li><a href="./shoping-cart.html">Shoping Cart</a></li>
+										<li><a href="./checkout.html">Check Out</a></li>
+										<li><a href="./blog-details.html">Blog Details</a></li>
+									</ul></li>
+								<li><a href="./blog.html">Blog</a></li>
+								<li><a href="./contact.html">Contact</a></li>
+							</ul>
+						</nav>
+					</div>
+					<div class="col-lg-3">
+						<div class="header__cart">
+							<ul>
+								<li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+								<li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+							</ul>
+							<div class="header__cart__price">
+								item: <span>$150.00</span>
+							</div>
 						</div>
 					</div>
 				</div>
+				<div class="humberger__open">
+					<i class="fa fa-bars"></i>
+				</div>
 			</div>
-			<div class="humberger__open">
-				<i class="fa fa-bars"></i>
+	</header>
+	<section class="hero hero-normal">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="hero__categories">
+						<div class="hero__categories__all">
+							<i class="fa fa-bars"></i> <span>All departments</span>
+						</div>
+						<ul>
+							<li th:each="category : ${categories}"><a href="#"
+								th:text="${category.categoryName}"></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="row">
+						<div class="hero__categories1">
+							<div class="hero__categories1__all ">
+								<span>All Categories</span>
+							</div>
+							<ul>
+								<li th:each="category : ${categories}"><a href="#"
+									th:text="${category.categoryName}"></a></li>
+							</ul>
+						</div>
+
+
+
+						<form id="searchForm">
+							<input type="text" id="keywordInput"
+								style="padding: 13px 30px 12px;" placeholder="What do you need?">
+							<button type="submit" class="site-btn"
+								style="padding: 17px 31px 14px;">SEARCH</button>
+						</form>
+						<div id="searchResult"></div>
+						<script>
+							document
+									.getElementById('searchForm')
+									.addEventListener(
+											'submit',
+											function(event) {
+												event.preventDefault();
+
+												var keyword = document
+														.getElementById('keywordInput').value
+														.trim();
+												if (keyword !== '') {
+													document
+															.getElementById('searchResult').innerHTML = 'Loading...';
+
+													var searchURL = "/ecommerce?keyword="
+															+ encodeURIComponent(keyword);
+
+													// Reload trang hiện tại
+													window.location.href = searchURL;
+												}
+											});
+						</script>
+
+						<div class="hero__search__phone " style="margin-left: 185px;">
+							<div class="hero__search__phone__icon ">
+								<i class="fa fa-phone"></i>
+							</div>
+							<div class="hero__search__phone__text">
+								<h5>+65 11.188.888</h5>
+								<span>support 24/7 time</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
 			</div>
 		</div>
-	</header>
-	 <section class="hero hero-normal" >
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>All departments</span>
-                        </div>
-                        <ul>
-                            <li><a href="#">Fresh Meat</a></li>
-                            <li><a href="#">Vegetables</a></li>
-                            <li><a href="#">Fruit & Nut Gifts</a></li>
-                            <li><a href="#">Fresh Berries</a></li>
-                            <li><a href="#">Ocean Foods</a></li>
-                            <li><a href="#">Butter & Eggs</a></li>
-                            <li><a href="#">Fastfood</a></li>
-                            <li><a href="#">Fresh Onion</a></li>
-                            <li><a href="#">Papayaya & Crisps</a></li>
-                            <li><a href="#">Oatmeal</a></li>
-                            <li><a href="#">Fresh Bananas</a></li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-lg-9"  >
-                <div class= "row">
-                   <div class="hero__categories1">
-    <div class="hero__categories1__all">
-        <span>All Categories</span>
-    </div>
-    <ul>
-        <li class="category-item" style="line-height:39px;" data-category="Fresh Meat">Fresh Meat</li>
-        <li class="category-item" style="line-height:39px;" data-category="Vegetables">Vegetables</li>
-        <li class="category-item" style="line-height:39px;" data-category="Fruit & Nut Gifts">Fruit & Nut Gifts</li>
-        <li class="category-item" data-category="Fresh Berries">Fresh Berries</li>
-        <li class="category-item" style="line-height:39px;" data-category="Ocean Foods">Ocean Foods</li>
-        <li class="category-item" style="line-height:39px;" data-category="Butter & Eggs">Butter & Eggs</li>
-        <li class="category-item" style="line-height:39px;" data-category="Fastfood">Fastfood</li>
-        <li class="category-item" style="line-height:39px;" data-category="Fresh Onion">Fresh Onion</li>
-        <li class="category-item" style="line-height:39px;" data-category="Papayaya & Crisps">Papayaya & Crisps</li>
-        <li class="category-item" style="line-height:39px;" data-category="Oatmeal">Oatmeal</li>
-        <li class="category-item" style="line-height:39px;" data-category="Fresh Bananas">Fresh Bananas</li>
- 
-    </ul>
 </div>
-
-<div class="category-content">
-</div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="./assets/js/SearchCategory.js">
-</script>                               	                                                             
-         <form id="searchForm"> 
-         <input type="text" id="keywordInput" style = "padding: 13px 30px 12px;" placeholder="What do you need?">
-         <button type="submit" class="site-btn" style = "padding:17px 31px 14px;">SEARCH</button>
-         </form>  
-        <div id="searchResult"></div>
-      <script>
-      
-       document.getElementById('searchForm').addEventListener('submit', function(event) {
-       event.preventDefault();
-
-       var keyword = document.getElementById('keywordInput').value.trim();
-       if (keyword !== '') {
-            document.getElementById('searchResult').innerHTML = 'Loading...';
-
-           
-            var searchURL = "/ecommerce?keyword=" + encodeURIComponent(keyword);
-            
-            // Reload trang hiện tại
-            window.location.href = searchURL;
-         }
-        });
-      </script>      
-                         
-         <div class="hero__search__phone " style ="margin-left: 185px;" >
-          <div class="hero__search__phone__icon ">
-           <i class="fa fa-phone"></i>
-        </div>
-          <div class="hero__search__phone__text">
-           <h5>+65 11.188.888</h5>
-            <span>support 24/7 time</span>
-             </div>
-             </div>
-           </div>
-                         
-         </div>
-        </div>
-      </div>
-    </div>
 </section>
 
 </div>
