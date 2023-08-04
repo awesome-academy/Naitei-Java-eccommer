@@ -1,5 +1,6 @@
 package app.service.Impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -24,7 +25,7 @@ public class CategoryServiceImpl implements CategoryService {
 			return categoryRepository.findAll();
 		} catch (Exception e) {
 			logger.error(e);
-			return null;
+			return Collections.EMPTY_LIST;
 		}
 	}
 

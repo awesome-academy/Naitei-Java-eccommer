@@ -34,7 +34,7 @@
 				<span th:if="${username}"> <span>Welcome, <span
 						th:text="${username}"></span>!
 				</span> <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
-				</span> <span th:unless="${username}"> <a href="login"><i
+				</span> <span th:unless="${username}"> <a th:href="@{/login}"><i
 						class="fa fa-user"></i> Login</a>
 				</span>
 			</div>
@@ -104,7 +104,7 @@
 								<span th:if="${username}"> <span>Welcome, <span
 										th:text="${username}"></span>!
 								</span> <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
-								</span> <span th:unless="${username}"> <a href="login"><i
+								</span> <span th:unless="${username}"> <a th:href="@{/login}"><i
 										class="fa fa-user"></i> Login</a>
 								</span>
 							</div>
