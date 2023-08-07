@@ -29,4 +29,10 @@ public class CategoryRepositpryImpl implements CategoryRepository {
 		}
 	}
 
+	@Override
+	public Category findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

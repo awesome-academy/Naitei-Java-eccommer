@@ -29,4 +29,15 @@ public class ProductServiceImpl implements ProductService {
 		}
 	}
 
+	@Override
+	public Product findById(Long id) {
+	
+		try {
+			return productRepository.findById(id);
+		} catch (Exception e) {
+			logger.error(e);
+			return null;
+		}
+	}
+
 }
