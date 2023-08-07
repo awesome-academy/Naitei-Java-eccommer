@@ -42,7 +42,15 @@
 			</props>
 		</property>
 
-		<property name="packagesToScan" value="app.model" />
+		<property name="annotatedClasses">
+			<list>
+				<value>app.model.Category</value>
+				<value>app.model.User</value>
+				<value>app.model.Role</value>
+				<value>app.model.Product</value>
+			</list>
+		</property>
+
 
 	</bean>
 
