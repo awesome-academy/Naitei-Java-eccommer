@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import app.authentication.MyDBAuthenticationService;
 
 @Configuration
-// @EnableWebSecurity = @EnableWebMVCSecurity + Extra features
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -27,14 +26,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/**", "/login", "/logout","/assets/**").permitAll()
-				.antMatchers("/admin/**").authenticated() // Chặn truy cập vào /admin/** nếu chưa đăng nhập
-				.anyRequest().access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')") // Nếu đăng nhập rồi, cho phép truy cập
-																				// vào bất kỳ trang nào yêu cầu
-																				// ROLE_USER hoặc ROLE_ADMIN
-				.and().formLogin().loginProcessingUrl("/process-login").loginPage("/login").defaultSuccessUrl("/")
-				.failureUrl("/login?error=true").usernameParameter("username").passwordParameter("password").and()
-				.logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful").and().exceptionHandling()
-				.accessDeniedPage("/login").and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
+		http.csrf().disable().authorizeRequests().antMatchers("/", "/login", "/logout", "/assets/**").permitAll()
+				.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')").anyRequest()
+				.access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')").and().formLogin().loginProcessingUrl("/process-login")
+				.loginPage("/login").defaultSuccessUrl("/").failureUrl("/login?error=true")
+				.usernameParameter("username").passwordParameter("password").and().logout().logoutUrl("/logout")
+				.logoutSuccessUrl("/logoutSuccessful").and().exceptionHandling().accessDeniedPage("/login").and()
+				.logout().logoutUrl("/logout").logoutSuccessUrl("/");
 	}
 }

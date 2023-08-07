@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="views/layout/admin/base-layout">
+<div layout:fragment="content" class="content-wrapper">
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1>List Products</h1>
+				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item active">Product</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+	<!-- Main content -->
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Table products</h3>
+						</div>
+						<!-- /.card-header -->
+						<div class="card-body">
+							<table id="example1" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Price</th>
+										<th>Stock Quantity</th>
+										<th>Image</th>
+										<th>Category</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="product : ${products}">
+										<td th:text="${product.name}"></td>
+										<td th:text="${product.description}"></td>
+										<td th:text="${product.price}"></td>
+										<td th:text="${product.stockQuantity}"></td>
+										<td><img
+											th:src="@{'/assets/img/featured/' + ${product.image}}"
+											alt="Product Image" width="50" /></td>
+										<td th:text="${product.category.categoryName}"></td>
+										<td><a th:href="@{'/admin/product/' + ${product.id}}">
+												<i class="fas fa-eye text-success"></i> <!-- Sử dụng lớp CSS để đổi màu thành xanh lá cây -->
+										</a> <a th:href="@{'/admin/product/edit/' + ${product.id}}"> <i
+												class="fas fa-edit text-warning"></i> <!-- Sử dụng lớp CSS để đổi màu thành màu cam -->
+										</a> <a th:href="@{'/admin/product/delete/' + ${product.id}}">
+												<i class="fas fa-trash-alt text-danger"></i> <!-- Sử dụng lớp CSS để đổi màu thành đỏ -->
+										</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+</div>
+</html>
