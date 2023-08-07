@@ -24,9 +24,7 @@ public class CategoryRepositpryImpl implements CategoryRepository {
 			Criteria cr = session.createCriteria(Category.class);
 			List<Category> categories = cr.list();
 			return categories;
-		} catch (Exception e) {
-			return null;
-		}
+		} 
 	}
 
 	@Override

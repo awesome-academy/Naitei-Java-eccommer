@@ -29,7 +29,6 @@ public class HomeController {
 		
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("products", productService.findAll());
-		
 		return "views/user/home/index";
 	}
 }
