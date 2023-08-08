@@ -8,7 +8,7 @@ import app.authentication.MyDBAuthenticationService;
 public class BaseController {
 	@Autowired
 	private MyDBAuthenticationService authenticationService;
-    public void CheckUsser(Model model){
+    public void CheckUser(Model model){
 	   UserDetails userDetails = authenticationService.getCurrentUserDetails();
 		if (userDetails != null) {
 			model.addAttribute("username",
