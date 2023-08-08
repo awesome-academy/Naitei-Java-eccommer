@@ -42,4 +42,15 @@ public class ProductRepositoryImpl implements ProductRepository {
 		}
 	}
 
+	@Override
+	public List<Product> getTop6Products() {
+		try (Session session = sessionFactory.openSession()) {
+			Criteria cr = session.createCriteria(Product.class);
+			List<Product> products = cr.setMaxResults(6).list();
+			return products;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 }
