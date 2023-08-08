@@ -16,7 +16,7 @@ public class BlogController extends BaseController{
 
 	@GetMapping("/blogs")
 	public String index(Model model) {
-		CheckUsser(model);
+		CheckUser(model);
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("blogs", blogService.findAll());
 		return "views/user/blogs/index";

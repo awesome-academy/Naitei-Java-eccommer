@@ -24,14 +24,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	}
 
+	private static final String[] AUTH_WHITELIST = { "/", "/login", "/logout", "/assets/**", "/products/**",
+			"/blogs/**", "/cart", "/shop-grid" };
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/", "/login", "/logout", "/assets/**","/products/**","/blogs/**").permitAll()
-				.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')").anyRequest()
-				.access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')").and().formLogin().loginProcessingUrl("/process-login")
-				.loginPage("/login").defaultSuccessUrl("/").failureUrl("/login?error=true")
-				.usernameParameter("username").passwordParameter("password").and().logout().logoutUrl("/logout")
-				.logoutSuccessUrl("/logoutSuccessful").and().exceptionHandling().accessDeniedPage("/login").and()
-				.logout().logoutUrl("/logout").logoutSuccessUrl("/");
+		http.csrf().disable().authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll().antMatchers("/admin/**")
+				.access("hasRole('ROLE_ADMIN')").anyRequest().access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')").and()
+				.formLogin().loginProcessingUrl("/process-login").loginPage("/login").defaultSuccessUrl("/")
+				.failureUrl("/login?error=true").usernameParameter("username").passwordParameter("password").and()
+				.logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful").and().exceptionHandling()
+				.accessDeniedPage("/login").and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
 	}
 }
