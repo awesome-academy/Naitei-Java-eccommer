@@ -48,6 +48,7 @@
 				<value>app.model.User</value>
 				<value>app.model.Role</value>
 				<value>app.model.Product</value>
+				<value>app.model.Blog</value>
 			</list>
 		</property>
 
