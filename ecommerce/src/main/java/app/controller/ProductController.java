@@ -47,6 +47,7 @@ public class ProductController extends BaseController {
 		List<Category> categories = categoryService.findAll();
 		model.addAttribute("categories", categories);
 		model.addAttribute("products", productService.findAll());
+		model.addAttribute("currentPage", "shop-grid");
 		return "views/user/shop-grid/index.html";
     }
 	

@@ -56,8 +56,9 @@
 									</td>
 									<td class="shoping__cart__total"
 										th:text="${(cartItem.product.price * cartItem.quantity) + ' $'}"></td>
-									<td class="shoping__cart__item__close"><a href="#"
-										class="icon_close"></a></td>
+									<td class="shoping__cart__item__close"><a
+										th:href="@{/cart/remove(cartItemId=${cartItem.id})}"><span
+											class="icon_close"></span></a></td>
 								</tr>
 							</tbody>
 
