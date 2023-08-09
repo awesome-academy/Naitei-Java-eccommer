@@ -19,7 +19,7 @@ public class HomeController extends BaseController{
 	public String index(Model model) {
 		CheckUser(model);
 		model.addAttribute("categories", categoryService.findAll());
-		model.addAttribute("products", productService.findAll());
+		model.addAttribute("products", productService.getTop6Products());
 		return "views/user/home/index";
 	}
 }

@@ -1,5 +1,6 @@
 package app.service.Impl;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,4 +41,9 @@ public class ProductServiceImpl implements ProductService {
 		}
 	}
 
+	@Override
+	public List<Product> getTop6Products() {
+		return productRepository.getTop6Products();
+	}
+	
 }
