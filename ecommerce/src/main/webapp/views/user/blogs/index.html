@@ -105,7 +105,8 @@
 										<li><i class="fa fa-comment-o"></i> 5</li>
 									</ul>
 									<h5>
-										<a href="#" th:text="${blog.blogName}"></a>
+										<a th:href="@{'/blogs/' + ${blog.id}}"
+                                           th:text="${blog.blogName}"></a>
 									</h5>
 									<p th:text="${blog.description}"></p>
 									<a href="#" class="blog__btn">READ MORE <span

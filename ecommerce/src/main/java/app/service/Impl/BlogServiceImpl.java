@@ -31,7 +31,11 @@ public class BlogServiceImpl implements BlogService {
 
 	@Override
 	public Blog findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return blogRepository.findById(id);
+		} catch (Exception e) {
+			logger.error(e);
+		return null;		
 	}
+}
 }
