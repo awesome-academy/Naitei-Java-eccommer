@@ -4,11 +4,12 @@ package app.repository.Impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import app.model.Blog;
 import app.repository.BlogRepository;
 
@@ -27,7 +28,10 @@ public class BlogRepositoryImpl implements BlogRepository{
 
 	@Override
 	public Blog findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		Session session = sessionFactory.openSession();
+			Criteria cr = session.createCriteria(Blog.class);
+			cr.add(Restrictions.eq("id",id));
+			Blog blog = (Blog) cr.uniqueResult();
+			return blog;
+		} 
 }
