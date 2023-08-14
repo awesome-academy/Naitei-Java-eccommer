@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import app.model.Cart;
 import app.model.CartItem;
 import app.model.Product;
@@ -19,7 +21,7 @@ import app.service.ShoppingCartService;
 
 @Controller
 @RequestMapping("/cart")
-public class CartController extends BaseController{
+public class CartController extends BaseController {
 	@Autowired
 	private ProductService productService;
 
@@ -35,7 +37,7 @@ public class CartController extends BaseController{
 	}
 
 	@PostMapping("/add")
-	public String addToCart(@RequestParam Long productId,@RequestParam int quantity, HttpSession session) {
+	public String addToCart(@RequestParam Long productId, @RequestParam int quantity, HttpSession session) {
 		// Lấy cart hiện tại từ session, hoặc tạo mới nếu chưa có
 		Cart cart = (Cart) session.getAttribute("cart");
 		if (cart == null) {
@@ -45,11 +47,24 @@ public class CartController extends BaseController{
 
 		Product product = productService.findById(productId);
 		CartItem cartItem = new CartItem();
+		cartItem.setId(productId);
 		cartItem.setProduct(product);
 		cartItem.setQuantity(quantity);
 		cartItem.setCart(cart);
 
 		shoppingCartService.addItem(cartItem);
+		return "redirect:/cart";
+	}
+
+	@GetMapping("/remove")
+	public String removeCartItem(@RequestParam("cartItemId") Long cartItemId, RedirectAttributes redirectAttributes) {
+		System.out.println("cartItemId: "+cartItemId);
+		CartItem cartItem = shoppingCartService.findById(cartItemId);
+		if (cartItem == null) {
+			redirectAttributes.addFlashAttribute("message", "CartItem not found!");
+			return "redirect:/cart";
+		}
+		shoppingCartService.removeItem(cartItem);
 		return "redirect:/cart";
 	}
 

@@ -10,4 +10,7 @@ public interface ShoppingCartService {
 	public void removeItem(CartItem item);
 
 	public List<CartItem> getCartItems();
+	
+	public CartItem findByProductName(String productName);
+	public CartItem findById(Long Id);
 }

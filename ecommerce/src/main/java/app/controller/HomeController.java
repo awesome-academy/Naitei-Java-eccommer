@@ -20,6 +20,7 @@ public class HomeController extends BaseController{
 		CheckUser(model);
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("products", productService.getTop6Products());
+		model.addAttribute("currentPage", "home");
 		return "views/user/home/index";
 	}
 }

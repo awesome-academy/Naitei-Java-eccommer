@@ -23,6 +23,7 @@ public class BlogController extends BaseController{
 		CheckUser(model);
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("blogs", blogService.findAll());
+		model.addAttribute("currentPage", "blogs");
 		return "views/user/blogs/index";
 	}
 	@GetMapping("/blogs/{id}")

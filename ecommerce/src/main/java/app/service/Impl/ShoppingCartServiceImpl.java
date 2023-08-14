@@ -26,14 +26,33 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	}
 
 	@Override
-	public void removeItem(CartItem item) {
-		// TODO Auto-generated method stub
-
+	public List<CartItem> getCartItems() {
+		return cartItems;
 	}
 
 	@Override
-	public List<CartItem> getCartItems() {
-		return cartItems;
+	public void removeItem(CartItem item) {
+		cartItems.remove(item);
+	}
+
+	@Override
+	public CartItem findByProductName(String productName) {
+		for (CartItem cartItem : cartItems) {
+			if (cartItem.getProduct().getName().equals(productName)) {
+				return cartItem;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public CartItem findById(Long Id) {
+		for (CartItem cartItem : cartItems) {
+			if (cartItem.getProduct().getId().equals(Id)) {
+				return cartItem;
+			}
+		}
+		return null;
 	}
 
 }
