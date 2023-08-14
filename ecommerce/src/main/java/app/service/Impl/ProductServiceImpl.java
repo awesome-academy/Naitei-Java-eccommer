@@ -45,5 +45,13 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> getTop6Products() {
 		return productRepository.getTop6Products();
 	}
+
+	@Override
+	public List<Product> getProductsAndReviews() {
+		// TODO Auto-generated method stub
+		return productRepository.getProductsAndReviews();
+	}
+	
+	
 	
 }
