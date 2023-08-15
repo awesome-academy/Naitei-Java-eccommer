@@ -38,6 +38,7 @@ public class ProductController extends BaseController {
 			return "redirect:/";
 		}
 		model.addAttribute("product", product);
+		model.addAttribute("products", productService.getTop6Products());
         return "views/user/products/show.html"; 
     }
 	
@@ -48,6 +49,7 @@ public class ProductController extends BaseController {
 		model.addAttribute("categories", categories);
 		model.addAttribute("products", productService.findAll());
 		model.addAttribute("currentPage", "shop-grid");
+
 		return "views/user/shop-grid/index.html";
     }
 	
