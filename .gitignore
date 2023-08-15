@@ -28,5 +28,6 @@ ecommerce/.settings/*
 ecommerce/src/main/resources/datasources.properties
 ecommerce/.classpath
 ecommerce/.project
+ecommerce/bin/*
 .project
 

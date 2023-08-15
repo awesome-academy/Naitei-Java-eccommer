@@ -50,7 +50,7 @@
 											<div class="pro-qty">
 												<input type="number" th:value="${cartItem.quantity}" min="1"
 													step="1"
-													th:attr="onchange='updateTotal(this, ' + ${cartItem.product.price} + ')'">
+													th:attr="data-cart-item-id=${cartItem.id}, onchange='updateTotal(this, ' + ${cartItem.product.price} + ')'">
 											</div>
 										</div>
 									</td>
@@ -92,7 +92,8 @@
 							<li>Subtotal <span id="subtotal">$0.00</span></li>
 							<li>Total <span id="total">$0.00</span></li>
 						</ul>
-						<a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+						<a th:href="@{/orders/new}" class="primary-btn">PROCEED TO
+							CHECKOUT</a>
 					</div>
 				</div>
 

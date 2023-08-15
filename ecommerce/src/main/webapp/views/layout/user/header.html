@@ -249,5 +249,15 @@
 			<strong>Notification:</strong> <span th:text="${message}"></span>
 		</div>
 	</div>
+	<div class="container mt-5" th:if="${successMessage}">
+		<div class="alert alert-info alert-dismissible fade show" role="alert">
+			<strong>Notification:</strong> <span th:text="${successMessage}"></span>
+		</div>
+	</div>
+	<div class="container mt-5" th:if="${errorMessage}">
+		<div class="alert alert-info alert-dismissible fade show" role="alert">
+			<strong>Notification:</strong> <span th:text="${errorMessage}"></span>
+		</div>
+	</div>
 </div>
 </html>
