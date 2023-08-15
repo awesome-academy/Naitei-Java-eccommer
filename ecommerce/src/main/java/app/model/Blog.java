@@ -1,11 +1,15 @@
 package app.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "blogs")
@@ -22,15 +26,18 @@ public class Blog {
 
 	@Column(name = "image")
 	private String image;
-
+	
+	@Column(name = "date_create")
+	private Date dateCreate;
 	public Blog() {
 	}
 
-	public Blog(Long id, String blogName, String description, String image) {
+	public Blog(Long id, String blogName, String description, String image, Date dateCreate) {
 		this.id = id;
 		this.blogName = blogName;
 		this.description = description;
 		this.image = image;
+		this.dateCreate = dateCreate;
 	}
 
 	public Long getId() {
@@ -64,10 +71,19 @@ public class Blog {
 	public void setImage(String image) {
 		this.image = image;
 	}
+	
+	@DateTimeFormat(pattern="dd-MMM-YYYY")
+	public Date getDateCreate() {
+		return dateCreate;
+	}
+
+	public void setDateCreate(Date dateCreate) {
+		this.dateCreate = dateCreate;
+	}
 
 	@Override
 	public String toString() {
 		return "Blog{" + "id=" + id + ", blogName='" + blogName + '\'' + ", description='" + description + ", image='"
-				+ image + '\'' + '}';
+				+ image + '\'' + ", dateCreate='" + dateCreate + '\'' + '}';
 	}
 }

@@ -23,7 +23,10 @@ public class BlogRepositoryImpl implements BlogRepository{
 		Session session = sessionFactory.openSession();
 		Criteria cr = session.createCriteria(Blog.class);
 		List<Blog> blogs = cr.list();
-		return blogs;		
+		for (Blog blog: blogs) {
+			System.out.println("Blog:" + blog);
+		}	
+		return blogs;
 	}
 
 	@Override
@@ -33,5 +36,13 @@ public class BlogRepositoryImpl implements BlogRepository{
 			cr.add(Restrictions.eq("id",id));
 			Blog blog = (Blog) cr.uniqueResult();
 			return blog;
-		} 
+		}
+	 @Override
+	    public List<Blog> getTop3BlogsByDate() {
+	        Session session = sessionFactory.openSession();
+	        List<Blog> top3Blogs = session.createQuery("FROM Blog b ORDER BY b.dateCreate DESC", Blog.class)
+	                .setMaxResults(3)
+	                .list();
+	        return top3Blogs;
+	    }
 }
