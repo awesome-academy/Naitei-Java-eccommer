@@ -55,7 +55,7 @@
 										</div>
 									</td>
 									<td class="shoping__cart__total"
-										th:text="${(cartItem.product.price * cartItem.quantity) + ' $'}"></td>
+										th:text="${#numbers.formatDecimal(cartItem.product.price * cartItem.quantity,0,2)} + ' $'"></td>
 									<td class="shoping__cart__item__close"><a
 										th:href="@{/cart/remove(cartItemId=${cartItem.id})}"><span
 											class="icon_close"></span></a></td>

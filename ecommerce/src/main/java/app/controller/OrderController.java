@@ -44,7 +44,8 @@ public class OrderController extends BaseController {
 	@PostMapping("/orders/save")
 	public String order(RedirectAttributes redirectAttributes, @ModelAttribute("formOrder") formOrder formOrder) {
 		try {
-			orderService.saveOrder(formOrder);
+			List<CartItem> cartItems = shoppingCartService.getCartItems();
+			orderService.saveOrder(formOrder, cartItems);
 			redirectAttributes.addFlashAttribute("successMessage", "Order placed successfully.");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("errorMessage", "Error occurred while placing the order.");

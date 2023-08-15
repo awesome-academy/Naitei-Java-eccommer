@@ -67,4 +67,15 @@ public class CartController extends BaseController {
 		return "redirect:/cart";
 	}
 
+	@PostMapping("/updateCartItemQuantity")
+	public String updateCartItemQuantity(@RequestParam("cartItemId") Long cartItemId,
+			@RequestParam("quantity") int quantity) {
+		CartItem cartItem = shoppingCartService.findById(cartItemId);
+
+		if (cartItem != null) {
+			cartItem.setQuantity(quantity);
+		}
+		return "redirect:/cart";
+	}
+
 }

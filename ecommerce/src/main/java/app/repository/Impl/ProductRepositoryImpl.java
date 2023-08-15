@@ -43,7 +43,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 	public Product findById(Long id) {
 		try (Session session = sessionFactory.openSession()) {
 			Criteria cr = session.createCriteria(Product.class);
-			cr.add(Restrictions.eq("id",id));
+			cr.add(Restrictions.eq("id", id));
 			Product product = (Product) cr.uniqueResult();
 			return product;
 		} catch (Exception e) {
@@ -64,13 +64,30 @@ public class ProductRepositoryImpl implements ProductRepository {
 
 	@Override
 	public List<Product> getProductsAndReviews() {
-	    try (Session session = sessionFactory.openSession()) {
-	    	String sql = "select products.* from products inner join reviews where products.id = reviews.product_id;";
-	    	SQLQuery query = session.createSQLQuery(sql);
-	    	query.addEntity(Product.class);
-	    	List<Product> productList = query.getResultList();
-	    	return productList;
-	    }
+		try (Session session = sessionFactory.openSession()) {
+			String sql = "select products.* from products inner join reviews where products.id = reviews.product_id;";
+			SQLQuery query = session.createSQLQuery(sql);
+			query.addEntity(Product.class);
+			List<Product> productList = query.getResultList();
+			return productList;
+		}
+	}
+
+	@Override
+	public void updateProduct(Product updatedProduct) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Product existingProduct = session.get(Product.class, updatedProduct.getId());
+		if (existingProduct != null) {
+			existingProduct.setName(updatedProduct.getName());
+			existingProduct.setPrice(updatedProduct.getPrice());
+			existingProduct.setDescription(updatedProduct.getDescription());
+			existingProduct.setStockQuantity(updatedProduct.getStockQuantity());
+			existingProduct.setImage(updatedProduct.getImage());
+			session.update(existingProduct);
+			session.getTransaction().commit();
+		}
+
 	}
 
 }
