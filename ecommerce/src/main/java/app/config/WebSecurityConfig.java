@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	private static final String[] AUTH_WHITELIST = { "/", "/login", "/logout", "/assets/**", "/products/**",
-			"/blogs/**", "/cart", "/shop-grid" };
+			"/blogs/**", "/shop-grid" };
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

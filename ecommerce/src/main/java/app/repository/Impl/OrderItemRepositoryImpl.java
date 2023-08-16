@@ -7,35 +7,33 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import app.model.Order;
-import app.repository.OrderRepository;
+import app.model.OrderItem;
+import app.repository.OrderItemRepository;
 
 @Repository
-public class OrderRepositoryImpl implements OrderRepository {
+public class OrderItemRepositoryImpl implements OrderItemRepository {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
-	public List<Order> findAll() {
+	public List<OrderItem> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Order findById(Long id) {
+	public OrderItem findById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Long saveOrder(Order order) {
-		Long orderId = null;
+	public void saveOrderItem(OrderItem item) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		orderId = (Long) session.save(order);
+		session.save(item);
 		session.getTransaction().commit();
-		return orderId;
 	}
 
 }

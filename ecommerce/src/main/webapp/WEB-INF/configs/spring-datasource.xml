@@ -50,6 +50,9 @@
 				<value>app.model.Product</value>
 				<value>app.model.Blog</value>
 				<value>app.model.Order</value>
+				<value>app.model.OrderItem</value>
+				<value>app.model.Review</value>
+				<value>app.model.Payment</value>
 			</list>
 		</property>
 
