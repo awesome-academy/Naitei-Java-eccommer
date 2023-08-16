@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	}
 
-	private static final String[] AUTH_WHITELIST = { "/", "/login", "/logout", "/assets/**", "/products/**",
+	private static final String[] AUTH_WHITELIST = { "/", "/login", "/logout", "/signup", "/assets/**", "/products/**",
 			"/blogs/**", "/shop-grid" };
 
 	@Override

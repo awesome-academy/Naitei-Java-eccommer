@@ -14,19 +14,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import app.validator.LoginValidator;
+import app.validator.SignupValidator;
 import app.request.formLogin;
+import app.request.signUp;
+import app.service.UserService;
 import app.authentication.MyDBAuthenticationService;
 
 @Controller
 public class SessionController {
 	@Autowired
+	UserService userService;
+	@Autowired
 	private LoginValidator loginValidator;
 
-	@InitBinder
+	@InitBinder("formLogin")
 	protected void initBinder(WebDataBinder binder) {
 		binder.addValidators(loginValidator);
+	}
+	
+	@Autowired
+	private SignupValidator signupValidator;
+	
+	@InitBinder("signUp")
+	protected void initBinders(WebDataBinder binder) {
+		binder.addValidators(signupValidator);
 	}
 
 	@Autowired
@@ -60,5 +74,30 @@ public class SessionController {
 			return "views/session/login/index";
 		}
 
+	}
+	
+	@GetMapping("/signup")
+	public String signup(Model model) {
+		model.addAttribute("signUp", new signUp());
+		return "views/session/signup/index";
+	}
+	
+	@PostMapping("/signup")
+	public String signup(Model model, @ModelAttribute("signUp") signUp signUp, BindingResult binding,  RedirectAttributes redirectAttributes) {
+		signupValidator.validate(signUp, binding);
+		if (binding.hasErrors()) {
+			return "views/session/signup/index";
+		}
+		try {
+			redirectAttributes.addFlashAttribute("message", "Signup successed!");
+			userService.save(signUp);
+		}
+		catch(Exception e) {
+			redirectAttributes.addFlashAttribute("message", "Signup not successed!");
+		}
+		finally {
+			return "redirect:/login";
+		}
+		
 	}
 }
