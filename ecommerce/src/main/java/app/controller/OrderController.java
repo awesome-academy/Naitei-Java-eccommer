@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -51,5 +52,19 @@ public class OrderController extends BaseController {
 			redirectAttributes.addFlashAttribute("errorMessage", "Error occurred while placing the order.");
 		}
 		return "redirect:/";
+	}
+
+	@GetMapping("/admin/orders")
+	public String index(Model model) {
+		CheckUser(model);
+		model.addAttribute("orders", orderService.findAll());
+		return "views/admin/orders/index";
+	}
+
+	@GetMapping("/admin/orders/edit/{id}")
+	public String edit(Model model, @PathVariable Long id) {
+		CheckUser(model);
+		model.addAttribute("order", orderService.findById(id));
+		return "views/admin/orders/edit";
 	}
 }

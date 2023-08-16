@@ -1,6 +1,7 @@
 package app.service.Impl;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,14 +40,17 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public List<Order> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return orderRepository.findAll();
+		} catch (Exception e) {
+			return Collections.emptyList();
+		}
 	}
 
 	@Override
 	public Order findById(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return orderRepository.findById(id);
 	}
 
 	@Override

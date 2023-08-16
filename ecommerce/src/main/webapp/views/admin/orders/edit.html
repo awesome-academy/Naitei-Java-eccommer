@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="views/layout/admin/base-layout">
+<div layout:fragment="content" class="content-wrapper">
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1>Orders Edit</h1>
+				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a th:href="@{/admin}">Home</a></li>
+						<li class="breadcrumb-item"><a th:href="@{/admin/orders}">Order</a></li>
+						<li class="breadcrumb-item active">Edit</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+	<!-- Main content -->
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="card card-warning">
+						<div class="card-header">
+							<h3 class="card-title">Order</h3>
+						</div>
+						<!-- /.card-header -->
+						<!-- form start -->
+						<form>
+							<div class="card-body">
+								<div class="form-group">
+									<label for="recipientName">Recipient's name</label> <input
+										type="text" class="form-control" id="recipientName"
+										placeholder="Enter recipient's name">
+								</div>
+								<div class="form-group">
+									<label for="recipientPhone">Recipient's phone</label> <input
+										type="text" class="form-control" id="recipientPhone"
+										placeholder="Enter recipient's phone">
+								</div>
+								<div class="form-group">
+									<label for="recipientAddress">Recipient's address</label> <input
+										type="text" class="form-control" id="recipientAddress"
+										placeholder="Enter recipient's address">
+								</div>
+								<div class="form-group">
+									<label>Delivery status</label> <select class="form-control">
+										<option>Shipped</option>
+										<option>Pending</option>
+										<option>Delivered</option>
+										<option>Processing</option>
+									</select>
+								</div>
+							</div>
+							<!-- /.card-body -->
+							<div class="card-footer">
+								<button type="submit" class="btn btn-warning">Save</button>
+							</div>
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+</div>
+</html>
