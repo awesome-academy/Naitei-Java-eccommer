@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import app.model.Product;
+import app.service.BlogService;
 import app.service.CategoryService;
 import app.service.ProductService;
 
@@ -18,6 +19,8 @@ public class HomeController extends BaseController{
 	private CategoryService categoryService;
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private BlogService blogService;
 
 	@GetMapping("/")
 	public String index(Model model) {
@@ -35,6 +38,7 @@ public class HomeController extends BaseController{
             productGroups.add(productService.getTop6Products().subList(i, endIndex));
         }
         model.addAttribute("productGroups", productGroups);
+		model.addAttribute("top3Blogs", blogService.getTop3BlogsByDate());
 		return "views/user/home/index";
 	}
 	

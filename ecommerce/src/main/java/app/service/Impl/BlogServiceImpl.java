@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.model.Blog;
+import app.model.Product;
 import app.repository.BlogRepository;
 import app.service.BlogService;
 
@@ -38,4 +39,8 @@ public class BlogServiceImpl implements BlogService {
 		return null;		
 	}
 }
+	@Override
+	public List<Blog> getTop3BlogsByDate() {
+		return blogRepository.getTop3BlogsByDate();
+	}
 }

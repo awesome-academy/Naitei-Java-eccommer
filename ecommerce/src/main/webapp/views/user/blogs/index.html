@@ -101,12 +101,13 @@
 								</div>
 								<div class="blog__item__text">
 									<ul>
-										<li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+										<li><i class="fa fa-calendar-o"
+											th:text="${#dates.format(blog.dateCreate, 'dd-MMM-yyyy')}"></i></li>
 										<li><i class="fa fa-comment-o"></i> 5</li>
 									</ul>
 									<h5>
 										<a th:href="@{'/blogs/' + ${blog.id}}"
-                                           th:text="${blog.blogName}"></a>
+											th:text="${blog.blogName}"></a>
 									</h5>
 									<p th:text="${blog.description}"></p>
 									<a href="#" class="blog__btn">READ MORE <span
