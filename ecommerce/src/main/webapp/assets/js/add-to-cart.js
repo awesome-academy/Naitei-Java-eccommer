@@ -33,12 +33,16 @@ function addToCart(productId, quantity) {
 
 
 function updateTotal(input, price) {
-	console.log("Price", price);
+	const cartItemId = input.getAttribute('data-cart-item-id');
 	const quantity = input.value;
 	const total = (price * quantity).toFixed(2);
 	const totalElement = input.closest("tr").querySelector(".shoping__cart__total");
 	totalElement.textContent = total + " $";
 	updateCartTotal();
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "/ecommerce/cart/updateCartItemQuantity", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send("cartItemId=" + cartItemId + "&quantity=" + quantity);
 }
 
 function updateCartTotal() {

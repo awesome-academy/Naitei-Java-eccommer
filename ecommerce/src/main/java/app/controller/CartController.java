@@ -58,7 +58,6 @@ public class CartController extends BaseController {
 
 	@GetMapping("/remove")
 	public String removeCartItem(@RequestParam("cartItemId") Long cartItemId, RedirectAttributes redirectAttributes) {
-		System.out.println("cartItemId: "+cartItemId);
 		CartItem cartItem = shoppingCartService.findById(cartItemId);
 		if (cartItem == null) {
 			redirectAttributes.addFlashAttribute("message", "CartItem not found!");
