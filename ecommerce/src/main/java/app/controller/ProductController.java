@@ -1,4 +1,5 @@
 package app.controller;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,6 +50,13 @@ public class ProductController extends BaseController {
 		model.addAttribute("categories", categories);
 		model.addAttribute("products", productService.findAll());
 		model.addAttribute("currentPage", "shop-grid");
+		List<List<Product>> productGroups = new ArrayList<>();
+        int chunkSize = 3;
+        for (int i = 0; i < productService.getTop6Products().size(); i += chunkSize) {
+            int endIndex = Math.min(i + chunkSize, productService.getTop6Products().size());
+            productGroups.add(productService.getTop6Products().subList(i, endIndex));
+        }
+		model.addAttribute("productGroups", productGroups);
 
 		return "views/user/shop-grid/index.html";
     }

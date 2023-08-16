@@ -15,6 +15,15 @@
           </div>
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
             <form th:action="@{/login}" th:object="${formLogin}" method="post">
+              <div class="container mt-5" th:if="${message}">
+                <div
+                  class="alert alert-info alert-dismissible fade show"
+                  role="alert"
+                >
+                  <strong>Notification:</strong>
+                  <span th:text="${message}"></span>
+                </div>
+              </div>
               <!-- Hiển thị lỗi nếu có -->
               <div
                 th:if="${error}"
@@ -115,7 +124,7 @@
                 </button>
                 <p class="small fw-bold mt-2 pt-1 mb-0">
                   Don't have an account?
-                  <a href="#!" class="link-danger">Register</a>
+                  <a th:href="@{/signup}" class="link-danger">Register </a>
                 </p>
               </div>
             </form>
