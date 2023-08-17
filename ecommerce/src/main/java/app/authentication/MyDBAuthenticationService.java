@@ -27,7 +27,6 @@ public class MyDBAuthenticationService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User userInfo = userInfoDAO.findUser(username);
-		BCryptPasswordEncoder encoder = passwordEncoder();
 		if (userInfo == null) {
 //			throw new UsernameNotFoundException("User " + username + " was not found in the database");
 			return null;
@@ -47,7 +46,7 @@ public class MyDBAuthenticationService implements UserDetailsService {
 
 		UserDetails userDetails = (UserDetails) new org.springframework.security.core.userdetails.User(
 				userInfo.getUsername(), //
-				encoder.encode(userInfo.getPassword()), grantList);
+				userInfo.getPassword(), grantList);
 
 		return userDetails;
 	}
