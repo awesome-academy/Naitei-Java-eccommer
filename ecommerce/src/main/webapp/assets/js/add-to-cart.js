@@ -24,7 +24,7 @@ function addToCart(productId, quantity) {
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-			alert("Product added to cart successfully!");
+			toastr.success("Product added to cart successfully!")
 		}
 	};
 	const params = "productId=" + productId + "&quantity=" + quantity;;

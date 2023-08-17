@@ -43,7 +43,23 @@ public class OrderRepositoryImpl implements OrderRepository {
 		session.beginTransaction();
 		orderId = (Long) session.save(order);
 		session.getTransaction().commit();
+		session.close();
 		return orderId;
+	}
+
+	@Override
+	public void updateOrder(Order updatedOrder) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Order existingOrder = session.get(Order.class, updatedOrder.getId());
+		existingOrder.setOrderDate(updatedOrder.getOrderDate());
+		existingOrder.setRecipientName(updatedOrder.getRecipientName());
+		existingOrder.setRecipientPhone(updatedOrder.getRecipientPhone());
+		existingOrder.setRecipientAddress(updatedOrder.getRecipientAddress());
+		existingOrder.setDeliveryStatus(updatedOrder.getDeliveryStatus());
+		session.save(existingOrder);
+		session.getTransaction().commit();
+		session.close();
 	}
 
 }

@@ -81,4 +81,9 @@ public class OrderServiceImpl implements OrderService {
 			}
 		}
 	}
+
+	@Override
+	public void updateOrder(Order order) {
+		orderRepository.updateOrder(order);
+	}
 }

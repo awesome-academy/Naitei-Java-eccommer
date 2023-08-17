@@ -30,7 +30,7 @@ public class BlogController extends BaseController{
     public String DetailPage(@PathVariable Long id, RedirectAttributes redirectAttributes, Model model) {
 		Blog blog = blogService.findById(id);
 		if(blog == null) {
-			redirectAttributes.addFlashAttribute("message","Blog not found!");
+			redirectAttributes.addFlashAttribute("errorMessage","Blog not found!");
 			return "redirect:/";
 		}
 		model.addAttribute("blog", blog);

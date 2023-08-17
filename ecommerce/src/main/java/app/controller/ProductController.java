@@ -35,7 +35,7 @@ public class ProductController extends BaseController {
 		CheckUser(model);
 		Product product = productService.findById(id);
 		if (product == null) {
-			redirectAttributes.addFlashAttribute("message", "Product not found!");
+			redirectAttributes.addFlashAttribute("errorMessage", "Product not found!");
 			return "redirect:/";
 		}
 		model.addAttribute("product", product);

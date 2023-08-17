@@ -8,4 +8,6 @@ import app.request.formOrder;
 
 public interface OrderService extends BaseService<Long, Order> {
 	public void saveOrder(formOrder formOrder, List<CartItem> cartItems);
+	
+	public void updateOrder(Order order);
 }

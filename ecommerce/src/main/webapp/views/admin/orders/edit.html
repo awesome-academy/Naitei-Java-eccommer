@@ -31,29 +31,67 @@
 						</div>
 						<!-- /.card-header -->
 						<!-- form start -->
-						<form>
+						<form method="post" th:action="@{/admin/orders/update}">
 							<div class="card-body">
+								<input type="text" name="id" hidden="true"
+									th:value="${order.id}">
 								<div class="form-group">
-									<label for="recipientName">Recipient's name</label> <input
-										type="text" class="form-control" id="recipientName"
-										placeholder="Enter recipient's name">
+									<label for="orderDate">Order date</label>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i
+												class="far fa-calendar-alt"></i></span>
+										</div>
+										<input type="date" class="form-control"
+											th:field="${order.orderDate}" id="orderDate" />
+									</div>
 								</div>
 								<div class="form-group">
-									<label for="recipientPhone">Recipient's phone</label> <input
-										type="text" class="form-control" id="recipientPhone"
-										placeholder="Enter recipient's phone">
+									<label for="recipientName">Recipient's name</label>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="fas fa-user"></i></span>
+										</div>
+										<input type="text" class="form-control" id="recipientName"
+											name="recipientName" placeholder="Enter recipient's name"
+											th:value="${order.recipientName}">
+									</div>
 								</div>
 								<div class="form-group">
-									<label for="recipientAddress">Recipient's address</label> <input
-										type="text" class="form-control" id="recipientAddress"
-										placeholder="Enter recipient's address">
+									<label for="recipientPhone">Recipient's phone</label>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="fas fa-phone"></i></span>
+										</div>
+										<input type="text" class="form-control" id="recipientPhone"
+											name="recipientPhone" placeholder="Enter recipient's phone"
+											th:value="${order.recipientPhone}">
+									</div>
 								</div>
 								<div class="form-group">
-									<label>Delivery status</label> <select class="form-control">
-										<option>Shipped</option>
-										<option>Pending</option>
-										<option>Delivered</option>
-										<option>Processing</option>
+									<label for="recipientAddress">Recipient's address</label>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i
+												class="fas fa-map-marker-alt"></i></span>
+										</div>
+										<input type="text" class="form-control" id="recipientAddress"
+											name="recipientAddress"
+											placeholder="Enter recipient's address"
+											th:value="${order.recipientAddress}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label>Delivery status</label> <select class="form-control"
+										th:field="${order.deliveryStatus}">
+										<option value="Shipped"
+											th:selected="${order.deliveryStatus == 'Shipped'}">Shipped</option>
+										<option value="Pending"
+											th:selected="${order.deliveryStatus == 'Pending'}">Pending</option>
+										<option value="Delivered"
+											th:selected="${order.deliveryStatus == 'Delivered'}">Delivered</option>
+										<option value="Processing"
+											th:selected="${order.deliveryStatus == 'Processing'}">Processing</option>
 									</select>
 								</div>
 							</div>
@@ -64,7 +102,6 @@
 						</form>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</section>

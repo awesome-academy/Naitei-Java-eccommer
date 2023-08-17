@@ -34,10 +34,10 @@ public class SessionController {
 	protected void initBinder(WebDataBinder binder) {
 		binder.addValidators(loginValidator);
 	}
-	
+
 	@Autowired
 	private SignupValidator signupValidator;
-	
+
 	@InitBinder("signUp")
 	protected void initBinders(WebDataBinder binder) {
 		binder.addValidators(signupValidator);
@@ -75,15 +75,22 @@ public class SessionController {
 		}
 
 	}
-	
+
+	@GetMapping("/logoutSuccessful")
+	public String logout(Model model, RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("successMessage", "Logout successed!");
+		return "redirect:/";
+	}
+
 	@GetMapping("/signup")
 	public String signup(Model model) {
 		model.addAttribute("signUp", new signUp());
 		return "views/session/signup/index";
 	}
-	
+
 	@PostMapping("/signup")
-	public String signup(Model model, @ModelAttribute("signUp") signUp signUp, BindingResult binding,  RedirectAttributes redirectAttributes) {
+	public String signup(Model model, @ModelAttribute("signUp") signUp signUp, BindingResult binding,
+			RedirectAttributes redirectAttributes) {
 		signupValidator.validate(signUp, binding);
 		if (binding.hasErrors()) {
 			return "views/session/signup/index";
@@ -91,13 +98,11 @@ public class SessionController {
 		try {
 			redirectAttributes.addFlashAttribute("message", "Signup successed!");
 			userService.save(signUp);
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("message", "Signup not successed!");
-		}
-		finally {
+		} finally {
 			return "redirect:/login";
 		}
-		
+
 	}
 }
