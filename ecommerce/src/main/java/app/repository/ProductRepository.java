@@ -14,4 +14,5 @@ public interface ProductRepository extends BaseRepository<Long, Product> {
 
 	public void updateProduct(Product updatedProduct);
 
+	public void deleteProductById(Long id);
 }

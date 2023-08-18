@@ -23,9 +23,6 @@ public class BlogRepositoryImpl implements BlogRepository{
 		Session session = sessionFactory.openSession();
 		Criteria cr = session.createCriteria(Blog.class);
 		List<Blog> blogs = cr.list();
-		for (Blog blog: blogs) {
-			System.out.println("Blog:" + blog);
-		}	
 		return blogs;
 	}
 
