@@ -68,7 +68,7 @@ public class OrderServiceImpl implements OrderService {
 
 		for (CartItem cartItem : cartItems) {
 			OrderItem item = new OrderItem();
-			item.setProductId(cartItem.getProduct().getId());
+			item.setProduct(cartItem.getProduct());
 			item.setQuantity(cartItem.getQuantity());
 			item.setPrice(cartItem.getProduct().getPrice() * cartItem.getQuantity());
 			item.setOrderId(orderId);
@@ -85,5 +85,11 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void updateOrder(Order order) {
 		orderRepository.updateOrder(order);
+	}
+
+	public List<OrderItem> findByOrderId(Long orderId) {
+		// TODO Auto-generated method stub
+		return itemRepository.findByOrderId(orderId);
+
 	}
 }

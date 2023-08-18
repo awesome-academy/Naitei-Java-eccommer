@@ -36,12 +36,11 @@ public class UserServiceImpl implements UserService {
 			user.setFirstName(signup.getFirstname());
 			user.setLastName(signup.getLastname());
 			user.setPhone(signup.getPhone());
-			System.out.println("User: " + user);
+			
 			Role userRole = userepository.findRoleByName("USER");
 			Set<Role> roles = new HashSet<>();
 			roles.add(userRole);
 			user.setRoles(roles);
-			System.out.println("User: " + user);
 			userepository.save(user);
 		} catch (Exception e) {
 			logger.error(e);

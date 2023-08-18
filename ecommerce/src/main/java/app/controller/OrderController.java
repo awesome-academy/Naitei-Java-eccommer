@@ -69,6 +69,7 @@ public class OrderController extends BaseController {
 		return "views/admin/orders/edit";
 	}
 	
+
 	@PostMapping("/admin/orders/update")
 	public String updateOrder(@ModelAttribute("order") Order updatedOrder, RedirectAttributes redirectAttributes) {
 		try {
@@ -79,4 +80,14 @@ public class OrderController extends BaseController {
 		}
 		return "redirect:/admin/orders";
 	}
+
+	@GetMapping("/admin/orders/{id}")
+	public String detail(Model model,@PathVariable Long id) {
+		CheckUser(model);
+		model.addAttribute("order", orderService.findById(id));
+		model.addAttribute("order_items", orderService.findByOrderId(id));
+		return "views/admin/orders/detail";
+	}
+	
+
 }
