@@ -24,8 +24,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	}
 
-	private static final String[] AUTH_WHITELIST = { "/", "/login", "/logout", "/signup", "/assets/**", "/products/**",
-			"/blogs/**", "/shop-grid" };
+	private static final String[] AUTH_WHITELIST = { "/", "/login", "/logout", "/logoutSuccessful", "/signup",
+			"/assets/**", "/products/**", "/blogs/**", "/shop-grid" };
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -34,7 +34,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin().loginProcessingUrl("/process-login").loginPage("/login").defaultSuccessUrl("/")
 				.failureUrl("/login?error=true").usernameParameter("username").passwordParameter("password").and()
 				.logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful").and().exceptionHandling()
-				.accessDeniedPage("/login").and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
-
+				.accessDeniedPage("/login");
 	}
 }

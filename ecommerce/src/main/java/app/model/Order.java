@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +26,7 @@ public class Order {
 	@Column(name = "user_id")
 	private Long userId;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "order_date")
 	private LocalDate orderDate;
 

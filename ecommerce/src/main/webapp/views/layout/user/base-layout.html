@@ -21,14 +21,21 @@
 	type="text/css">
 <link rel="stylesheet" th:href="@{/assets/css/elegant-icons.css}"
 	type="text/css">
-<link rel="stylesheet" th:href="@{/assets/css/nice-select.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/assets/css/nice-select.css}"
+	type="text/css">
 <link rel="stylesheet" th:href="@{/assets/css/jquery-ui.min.css}"
 	type="text/css">
 <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.min.css}"
 	type="text/css">
 <link rel="stylesheet" th:href="@{/assets/css/slicknav.min.css}"
 	type="text/css">
-<link rel="stylesheet" th:href="@{/assets/css/style.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/assets/css/style.css}"
+	type="text/css">
+
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+	rel="stylesheet">
+</head>
 </head>
 
 <body>
@@ -50,8 +57,19 @@
 	<script th:src="@{/assets/js/mixitup.min.js}"></script>
 	<script th:src="@{/assets/js/owl.carousel.min.js}"></script>
 	<script th:src="@{/assets/js/main.js}"></script>
-	
+
 	<script th:src="@{/assets/js/add-to-cart.js}"></script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+	<script th:if="${successMessage}">
+		toastr.success("[[${successMessage}]]");
+	</script>
+
+	<script th:if="${errorMessage}">
+		toastr.error("[[${errorMessage}]]");
+	</script>
 
 </body>
 

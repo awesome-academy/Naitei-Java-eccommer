@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import app.model.CartItem;
+import app.model.Order;
 import app.request.formOrder;
 import app.service.OrderService;
 import app.service.ShoppingCartService;
@@ -66,5 +67,16 @@ public class OrderController extends BaseController {
 		CheckUser(model);
 		model.addAttribute("order", orderService.findById(id));
 		return "views/admin/orders/edit";
+	}
+	
+	@PostMapping("/admin/orders/update")
+	public String updateOrder(@ModelAttribute("order") Order updatedOrder, RedirectAttributes redirectAttributes) {
+		try {
+			orderService.updateOrder(updatedOrder);
+			redirectAttributes.addFlashAttribute("successMessage", "Edit successfully.");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("errorMessage", "Edit error.");
+		}
+		return "redirect:/admin/orders";
 	}
 }
