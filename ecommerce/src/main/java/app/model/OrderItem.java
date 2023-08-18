@@ -1,10 +1,13 @@
 package app.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -22,8 +25,9 @@ public class OrderItem {
 	@Column(name = "order_id")
 	private Long orderId;
 
-	@Column(name = "product_id")
-	private Long productId;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "product_id")
+	private Product product;
 
 	@Column(name = "price")
 	private double price;
@@ -34,10 +38,10 @@ public class OrderItem {
 	public OrderItem() {
 	}
 
-	public OrderItem(Long id, Long orderId, Long productId, double price, int quantity) {
+	public OrderItem(Long id, Long orderId, Product product, double price, int quantity) {
 		this.id = id;
 		this.orderId = orderId;
-		this.productId = productId;
+		this.product = product;
 		this.price = price;
 		this.quantity = quantity;
 	}
@@ -58,12 +62,12 @@ public class OrderItem {
 		this.orderId = orderId;
 	}
 
-	public Long getProductId() {
-		return productId;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProductId(Long productId) {
-		this.productId = productId;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public double getPrice() {
@@ -80,5 +84,11 @@ public class OrderItem {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	@Override
+	public String toString() {
+		return "OrderItem{" + "id=" + id + ", orderId=" + orderId + ", product=" + product + ", price=" + price
+				+ ", quantity=" + quantity + '}';
 	}
 }
