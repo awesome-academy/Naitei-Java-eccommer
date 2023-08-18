@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import app.model.Product;
 import app.repository.ProductRepository;
@@ -51,7 +52,16 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return productRepository.getProductsAndReviews();
 	}
-	
-	
-	
+	@Override
+	@Transactional
+	public boolean deleteProductById(Long id) {
+		 logger.info("Deleting product with ID: " + id);
+	    try {
+	        productRepository.deleteProductById(id);
+	        return true;
+	    } catch (Exception e) {
+	        logger.error("Failed to delete product with ID: " + id, e);
+	        return false;
+	    }
+	}
 }

@@ -1,5 +1,6 @@
 package app.repository.Impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
@@ -14,17 +15,18 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
+import org.apache.log4j.Logger;
 import app.model.Product;
 import app.model.Review;
 import app.repository.ProductRepository;
 
 @Repository
 public class ProductRepositoryImpl implements ProductRepository {
-
+	private static final Logger logger = Logger.getLogger(ProductRepositoryImpl.class);
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -35,7 +37,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 			List<Product> products = cr.list();
 			return products;
 		} catch (Exception e) {
-			return null;
+			return Collections.emptyList();
 		}
 	}
 
@@ -58,7 +60,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 			List<Product> products = cr.setMaxResults(6).list();
 			return products;
 		} catch (Exception e) {
-			return null;
+			return Collections.emptyList();
 		}
 	}
 
@@ -88,6 +90,22 @@ public class ProductRepositoryImpl implements ProductRepository {
 			session.getTransaction().commit();
 		}
 
+	}
+
+	@Override
+	public void deleteProductById(Long id) {
+	    try (Session session = sessionFactory.openSession()) {
+	    	 session.beginTransaction();
+	         
+	         String sql = "DELETE FROM Products WHERE id = :id";
+	         int deletedCount = session.createSQLQuery(sql)
+	                 .setParameter("id", id)
+	                 .executeUpdate();
+	         
+	         session.getTransaction().commit();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 
 }

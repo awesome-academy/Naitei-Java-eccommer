@@ -53,7 +53,7 @@
 						<li><a href="./blog-details.html">Blog Details</a></li>
 					</ul></li>
 				<li><a th:href="@{/blogs}">Blog</a></li>
-				<li><a href="./contact.html">Contact</a></li>
+				<li><a th:href="@{/contacts}">Contact</a></li>
 			</ul>
 		</nav>
 		<div id="mobile-menu-wrap"></div>
@@ -138,7 +138,8 @@
 								</ul></li>
 							<li th:class="${currentPage == 'blogs' ? 'active' : ''}"><a
 								th:href="@{/blogs}">Blog</a></li>
-							<li><a href="./contact.html">Contact</a></li>
+							<li th:class="${currentPage == 'contacts' ? 'active' : ''}"><a 
+							th:href="@{/contacts}">Contact</a></li>
 						</ul>
 					</nav>
 				</div>

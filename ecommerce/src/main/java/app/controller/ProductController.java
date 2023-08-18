@@ -61,5 +61,20 @@ public class ProductController extends BaseController {
 		return "views/user/shop-grid/index.html";
     }
 	
-	
+	@GetMapping("/admin/product/delete/{id}")
+	public String deleteProduct(@PathVariable Long id, RedirectAttributes redirectAttributes, Model model) {
+	    CheckUser(model);
+
+	    boolean isDeleted = productService.deleteProductById(id); 
+
+	    if (isDeleted) {
+	        List<Product> updatedProducts = productService.findAll(); 
+	        model.addAttribute("products", updatedProducts);
+	        redirectAttributes.addFlashAttribute("successMessage", "Product has been deleted successfully.");
+	    } else {
+	        redirectAttributes.addFlashAttribute("errorMessage", "Failed to delete product."); // Thông báo lỗi nếu xóa không thành công
+	    }
+
+	    return "redirect:/admin/product";
+	}
 }

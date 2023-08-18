@@ -7,5 +7,6 @@ import app.model.Product;
 public interface ProductService extends BaseService<Long, Product> {
 	public List<Product> getTop6Products();
 	public List<Product> getProductsAndReviews();
+	boolean deleteProductById(Long id);
 }
 
