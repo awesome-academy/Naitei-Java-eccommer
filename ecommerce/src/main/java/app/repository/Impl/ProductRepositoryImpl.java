@@ -34,6 +34,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 	public List<Product> findAll() {
 		try (Session session = sessionFactory.openSession()) {
 			Criteria cr = session.createCriteria(Product.class);
+			cr.add(Restrictions.eq("enable", true));
 			List<Product> products = cr.list();
 			return products;
 		} catch (Exception e) {
@@ -94,18 +95,14 @@ public class ProductRepositoryImpl implements ProductRepository {
 
 	@Override
 	public void deleteProductById(Long id) {
-	    try (Session session = sessionFactory.openSession()) {
-	    	 session.beginTransaction();
-	         
-	         String sql = "DELETE FROM Products WHERE id = :id";
-	         int deletedCount = session.createSQLQuery(sql)
-	                 .setParameter("id", id)
-	                 .executeUpdate();
-	         
-	         session.getTransaction().commit();
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Product existingProduct = session.get(Product.class, id);
+		if (existingProduct != null) {
+			existingProduct.setEnable(false);
+			session.update(existingProduct);
+			session.getTransaction().commit();
+		}
 	}
 
 }

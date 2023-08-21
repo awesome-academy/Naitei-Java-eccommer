@@ -4,8 +4,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import app.service.CategoryService;
 
@@ -61,15 +63,12 @@ public class ProductController extends BaseController {
 		return "views/user/shop-grid/index.html";
     }
 	
-	@GetMapping("/admin/product/delete/{id}")
-	public String deleteProduct(@PathVariable Long id, RedirectAttributes redirectAttributes, Model model) {
-	    CheckUser(model);
-
+	@PostMapping("/admin/products/{id}/delete")
+	public String deleteProduct(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+	    
 	    boolean isDeleted = productService.deleteProductById(id); 
 
 	    if (isDeleted) {
-	        List<Product> updatedProducts = productService.findAll(); 
-	        model.addAttribute("products", updatedProducts);
 	        redirectAttributes.addFlashAttribute("successMessage", "Product has been deleted successfully.");
 	    } else {
 	        redirectAttributes.addFlashAttribute("errorMessage", "Failed to delete product."); // Thông báo lỗi nếu xóa không thành công

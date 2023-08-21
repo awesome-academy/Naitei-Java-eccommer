@@ -16,6 +16,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.ColumnDefault;
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -46,11 +48,35 @@ public class Product {
 	@Column(name = "image")
 	private String image;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "category_id")
 	private Category category;
 
+	@Column(name = "enable")
+	@ColumnDefault("true")
+	private Boolean enable;
+
 	public Product() {
+	}
+
+	public Product(Long id, String name, String description, double price, int stockQuantity, String image,
+			Category category) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.stockQuantity = stockQuantity;
+		this.image = image;
+		this.category = category;
+		this.enable = true;
+	}
+
+	public Boolean getEnable() {
+		return enable;
+	}
+
+	public void setEnable(Boolean enable) {
+		this.enable = enable;
 	}
 
 	public Long getId() {
@@ -111,8 +137,9 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product{" + "id=" + id + ", name='" + name + '\'' + ", category=" + category + ", description='" + description
-				+ '\'' + ", price=" + price + ", stockQuantity=" + stockQuantity + ", image='" + image + '\'' + '}';
+		return "Product{" + "id=" + id + ", name='" + name + '\'' + ", category=" + category + ", description='"
+				+ description + '\'' + ", price=" + price + ", stockQuantity=" + stockQuantity + ", image='" + image
+				+ '\'' + enable + '}';
 	}
 
 }
